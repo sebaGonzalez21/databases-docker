@@ -1,0 +1,35 @@
+version: "3.7"
+services:
+## BASE DE DATOS MYSQL
+    mysql:
+        image: ${MYSQL_IMAGE}
+        command: --default-authentication-plugin=mysql_native_password
+        container_name: mysql
+        restart: ${RESTART}
+        volumes:
+          - D:\desarrollo\databases\mysql:/var/lib/mysql
+        environment:
+          MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+          MYSQL_DATABASE: ${MYSQL_DATABASE}
+          MYSQL_USER: ${MYSQL_USER}
+          MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+          MYSQL_ROOT_HOST: ${MYSQL_HOST}
+        ports:
+          - "${MYSQL_PORT}:${MYSQL_PORT}"
+## BASE DE DATOS SQLSERVER
+    sqlserver:
+        image: ${SQL_IMAGE}
+        container_name: sqlserver
+        restart: ${RESTART}
+        volumes:
+          - D:\desarrollo\databases\sqlserver:/var/opt/mssql
+        environment:
+          ACCEPT_EULA: ${SQL_ACCEPT_EULA}
+          SA_PASSWORD: ${SQL_SA_PASSWORD}
+          MSSQL_PID: ${SQL_MSSQL_PID}
+        ports:
+          - "${SQL_SERVER_EXPORT_PORT}:${SQL_SERVER_PORT}"
+#Eliminar Imagenes
+#docker rmi $(docker images --filter “dangling=true” -q --no-trunc)
+#docker-compose up -d --build --rm
+#conectarse a sql server: localhost,1433

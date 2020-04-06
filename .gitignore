@@ -1,0 +1,5 @@
+
+### IGNORE DATABASES BACKUPS FOLDERS
+mysql/*
+sqlserver/*
+
