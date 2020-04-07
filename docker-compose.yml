@@ -6,8 +6,9 @@ services:
         command: --default-authentication-plugin=mysql_native_password
         container_name: mysql
         restart: ${RESTART}
-        volumes:
-          - D:\desarrollo\databases\mysql:/var/lib/mysql
+        # DESCOMENTAR PARA PERSISTIR DATA
+        #volumes:
+        #  - D:\desarrollo\databases\mysql:/var/lib/mysql
         environment:
           MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
           MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -21,8 +22,9 @@ services:
         image: ${SQL_IMAGE}
         container_name: sqlserver
         restart: ${RESTART}
-        volumes:
-          - D:\desarrollo\databases\sqlserver:/var/opt/mssql
+        # DESCOMENTAR PARA PERSISTIR DATA
+        #volumes:
+        #  - D:\desarrollo\databases\sqlserver:/var/opt/mssql
         environment:
           ACCEPT_EULA: ${SQL_ACCEPT_EULA}
           SA_PASSWORD: ${SQL_SA_PASSWORD}
@@ -34,8 +36,9 @@ services:
         image: ${POSTGRE_IMAGE}
         container_name: postgres
         restart: ${RESTART}
+        # DESCOMENTAR PARA PERSISTIR DATA
         #volumes:
-        #  - D:\desarrollo\databases\sqlserver:/var/opt/mssql
+        #  - D:\desarrollo\databases\postgresql:/var/lib/postgresql/data
         environment:
           POSTGRES_USER: ${POSTGRES_USER}
           POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
