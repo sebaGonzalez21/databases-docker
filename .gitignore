@@ -3,4 +3,4 @@
 mysql/*
 sqlserver/*
 mongodb/*
-
+redis/*
