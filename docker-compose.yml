@@ -33,19 +33,21 @@ services:
           - "${SQL_SERVER_EXPORT_PORT}:${SQL_SERVER_PORT}"
 ## BASE DE DATOS POSTGRES
     postgres:
-        image: ${POSTGRE_IMAGE}
+        image: ${POSTGRES_IMAGE}
         container_name: postgres
         restart: ${RESTART}
         # DESCOMENTAR PARA PERSISTIR DATA
-        #volumes:
-        #  - D:\desarrollo\databases\postgresql:/var/lib/postgresql/data
+        volumes:
+          - D:\DEV\databases-data\postgresql:/var/lib/postgresql/data
+          - ./conf/postgres.conf:/etc/postgresql/postgresql.conf
         environment:
           POSTGRES_USER: ${POSTGRES_USER}
           POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
           POSTGRES_DB: ${POSTGRES_DB}
         ports:
           - "${POSTGRES_PORT}:${POSTGRES_PORT}"
-## BASE DE DATOS MONGO
+        command: postgres -c config_file=/etc/postgresql/postgresql.conf
+  ## BASE DE DATOS MONGO
     mongodb:
       image: ${MONGO_IMAGE}
       command: --serviceExecutor adaptive
