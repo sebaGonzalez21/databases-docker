@@ -17,6 +17,7 @@ docker-compose up sqlserver
 ```
 
 3. Post setup(SHOULDN'T be any)
+- Within the container:
 ```
    (sudo) pg_createcluster 11 postgres11_cluster01
    
